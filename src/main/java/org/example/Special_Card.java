@@ -99,8 +99,45 @@ public class Special_Card extends Card {
                 break;
         }
     }
-    void Displaycard() {
-        int k;
+    public String Displaycard() {
+        StringBuilder sb = new StringBuilder();
+
+        // Define a fixed card width (you can adjust this as needed)
+        final int cardWidth = 28;
+
+        // Create a horizontal border based on the card width
+        String horizontalBorder = "+" + "-".repeat(cardWidth - 2) + "+\n";
+
+        // Append the top border
+        sb.append(horizontalBorder);
+
+        // Create and append a centered title "SPECIAL CARD"
+        String title = "SPECIAL CARD";
+        int padding = (cardWidth - 2 - title.length()) / 2;
+        String titleLine = "|"
+                + " ".repeat(padding)
+                + title
+                + " ".repeat(cardWidth - 2 - title.length() - padding)
+                + "|\n";
+        sb.append(titleLine);
+
+        // Append a divider border
+        sb.append(horizontalBorder);
+
+        // Append the card's type (displayed in uppercase for clarity)
+        String typeStr = "Type: " + getType().toString().toUpperCase();
+        String typeLine = String.format("| %-"+(cardWidth - 2)+"s|\n", typeStr);
+        sb.append(typeLine);
+
+        // Append the card's color
+        String colorStr = "Color: " + getColor();
+        String colorLine = String.format("| %-"+(cardWidth - 2)+"s|\n", colorStr);
+        sb.append(colorLine);
+
+        // Append the bottom border
+        sb.append(horizontalBorder);
+
+        return sb.toString();
     }
     void Choose_A_color(){
         boolean chosen=false;

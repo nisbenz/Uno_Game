@@ -8,6 +8,8 @@ public class deck {
     Stack<Card> Discard;
 
     void initdeck() {
+        Draw = new Stack<>();
+        Discard = new Stack<>();
         int cpt = 0;
         for (int i = 0; i < 108; i++) {
             Card gen;
@@ -17,12 +19,9 @@ public class deck {
             } else {
                 gen = new Normal_Card();
             }
-            if (i == 106) {
-                Collections.shuffle(Draw);
-            }
-            assert Draw != null;
             Draw.push(gen);
         }
+        Collections.shuffle(Draw);
     }
 
     deck() {
@@ -53,9 +52,13 @@ public class deck {
         Discard.push(card);
         player.getHand().remove(index);
     }
-    public Card getTopCard() {
+    public Card getFirstCard() {
         Card card = Draw.pop();
         Discard.push(card);
         return card;
+    }
+    public Card getTopCard() {
+        return Discard.peek();
+
     }
 }

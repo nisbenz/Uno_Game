@@ -1,5 +1,6 @@
 package org.example;
 
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Real_player extends Player {
@@ -9,16 +10,16 @@ public class Real_player extends Player {
 
     public void play(Card previous, deck Deck) {
         if(!Canplay(previous)){
-                System.out.println("Player number " + getId() + "has to draw a card from the deck");
+                System.out.println("Player number " + getId() + " has to draw a card from the deck");
                 Deck.Drawing(this);
-                System.out.println("Player number " + getId() + "drew this card");
-                getHand().getLast().Displaycard();
+                System.out.println("Player number " + getId() + " drew this card");
+                System.out.println(getHand().getLast().Displaycard());
                 return;
         }
         boolean heplayed = false;
-        System.out.println("------------Player number " + getId() + "turn");
+        System.out.println("------------Player number " + getId() + " turn");
         System.out.println("here's the previous card");
-        previous.Displaycard();
+        System.out.println(previous.Displaycard());
         System.out.println("here's your hand");
         DisplayHand();
         while (!heplayed) {
@@ -28,8 +29,8 @@ public class Real_player extends Player {
             if (choice < 1 || choice > getHand().size()) {
                 System.out.println("Invalid input");
             } else if (getHand().get(choice - 1).Isitplayable(previous)) {
-                System.out.println("Player number " + getId() + "has played this card");
-                getHand().get(choice - 1).Displaycard();
+                System.out.println("Player number " + getId() + " has played this card");
+                System.out.println(getHand().get(choice - 1).Displaycard());
                 Deck.Discarding(this, choice - 1);
                 heplayed = true;
             } else {
