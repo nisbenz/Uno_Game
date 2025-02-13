@@ -1,5 +1,6 @@
 package org.example;
 import java.util.ArrayList;
+import org.example.Special.*;
 
 public class Game {
     private ArrayList<Player> players = new ArrayList<>();
@@ -20,7 +21,9 @@ public class Game {
                 for (int i = 0; i < 7; i++) {
                     getDeck().Drawing(player);
                 }
+                player.DisplayHand();
             }
+
         }
         void Start() {
             boolean Game_Over = false;
@@ -29,31 +32,28 @@ public class Game {
             int currentindex = 0;
             while (!Game_Over) {
                 players.get(currentindex).play(previous, getDeck());
-                if (previous instanceof Special_Card) {
-                    switch (((Special_Card) previous).getType()) {
-                        case draw2:
-                            ((Special_Card) previous).draw2_Effect(((Special_Card) previous).getEffect(), players.get(currentindex), getDeck());
+                    switch (previous.getClass().getSimpleName()) {
+                        case "draw4":
+                                ((draw4) previous).Effect(players.get(currentindex),getDeck());
                             break;
-                        case skip:
-                            ((Special_Card) previous).skip_Effect(currentindex, reverse, players.size());
+                        case "draw2":
+                            ((draw2) previous).Effect(players.get(currentindex),getDeck());
                             break;
-                        case reverse:
-                            ((Special_Card) previous).reverse_Effect(reverse, this);
+                        case "wild":
+                            ((wild) previous).Effect();
                             break;
-                        case wild:
-                            ((Special_Card) previous).wild_Effect(((Special_Card) previous).getEffect());
+                        case "skip":
+                            ((skip) previous).Effect(currentindex,reverse,players.size());
                             break;
-                        case draw4:
-                            ((Special_Card) previous).draw4_Effect(((Special_Card) previous).getEffect(), players.get(currentindex), getDeck());
+                        case "reverse":
+                            ((reverse) previous).Effect(reverse);
                             break;
                     }
-
                     if (reverse) {
                         reverseDirection();
                     }
                     // Move to the next player using the current direction.
                     currentindex = (currentindex + direction + players.size()) % players.size();
-                }
                 if (players.get(currentindex).Game_Over()) {
                     Game_Over = true;
                 }
