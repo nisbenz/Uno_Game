@@ -18,10 +18,10 @@ public class Game {
         }
         void  Serve_players(){
             for (Player player : players) {
-                for (int i = 0; i < 7; i++) {
+                for (int i = 0; i < 8; i++) {
                     getDeck().Drawing(player);
                 }
-                player.DisplayHand();
+
             }
 
         }
@@ -31,7 +31,7 @@ public class Game {
             Card previous = getDeck().getFirstCard();
             int currentindex = 0;
             while (!Game_Over) {
-                players.get(currentindex).play(previous, getDeck());
+
                     switch (previous.getClass().getSimpleName()) {
                         case "draw4":
                                 ((draw4) previous).Effect(players.get(currentindex),getDeck());
@@ -52,7 +52,8 @@ public class Game {
                     if (reverse) {
                         reverseDirection();
                     }
-                    // Move to the next player using the current direction.
+                players.get(currentindex).play(previous, getDeck());
+                // Move to the next player using the current direction.
                     currentindex = (currentindex + direction + players.size()) % players.size();
                 if (players.get(currentindex).Game_Over()) {
                     Game_Over = true;
@@ -60,14 +61,9 @@ public class Game {
                 previous = getDeck().getTopCard();
             }
         }
-        ArrayList<Player> getplayers(){
-            return players;
-        }
+
         deck getDeck(){
             return Deck;
-        }
-        void setDeck(deck d){
-            Deck = d;
         }
     private void reverseDirection() {
         direction *= -1;

@@ -1,5 +1,6 @@
 package org.example;
 import java.util.ArrayList;
+import java.util.List;
 
 public abstract class Player {
     private int id;
@@ -17,47 +18,55 @@ public abstract class Player {
     public void setHand(ArrayList<Card> hand) {
         this.hand = hand;
     }
-    public void DisplayHand() {
+    public void displayHand() {
         if (hand.isEmpty()) {
-            System.out.println("Your hand is empty!");
+            System.out.println("Your hand is empty.");
             return;
         }
 
-        // A list to store each card's display lines (split by newline)
-        ArrayList<String[]> cardsAsLines = new ArrayList<>();
-        int maxLines = 0;
-
-        // Convert each card's display string into an array of lines.
+        // Convert each card's string representation into an array of lines.
+        List<String[]> cardLinesList = new ArrayList<>();
         for (Card card : hand) {
-            // Assuming displayCard() returns a multi-line string
-            String cardRepresentation = card.Displaycard();
-            String[] lines = cardRepresentation.split("\n");
-            cardsAsLines.add(lines);
-
-            // Track the maximum number of lines among all cards
-            if (lines.length > maxLines) {
-                maxLines = lines.length;
-            }
+            // Split the multi-line string from toString() by newline characters.
+            String[] cardLines = card.toString().split("\n");
+            cardLinesList.add(cardLines);
         }
 
-        // For each line index (from 0 to maxLines-1), combine the corresponding lines from all cards.
-        for (int line = 0; line < maxLines; line++) {
-            StringBuilder combinedLine = new StringBuilder();
+        // All cards are assumed to have the same number of lines.
+        int numLines = cardLinesList.get(0).length;
 
-            // Append each card's corresponding line or spaces if that card has fewer lines.
-            for (String[] cardLines : cardsAsLines) {
-                if (line < cardLines.length) {
-                    combinedLine.append(cardLines[line]);
-                } else {
-                    // Append blank spaces for cards with fewer lines (assuming card width is 28 characters)
-                    combinedLine.append(" ".repeat(28));
+        // Print each line of all cards side by side.
+        for (int lineIndex = 0; lineIndex < numLines; lineIndex++) {
+            for (int cardIndex = 0; cardIndex < cardLinesList.size(); cardIndex++) {
+                System.out.print(cardLinesList.get(cardIndex)[lineIndex]);
+                // Print a single space between cards.
+                if (cardIndex < cardLinesList.size() - 1) {
+                    System.out.print(" ");
                 }
-                // Add a few spaces between cards
-                combinedLine.append("   ");
             }
-            // Print the combined line for this row.
-            System.out.println(combinedLine.toString());
+            System.out.println();
         }
+
+        // Define the card width (should match the one in your toString() method).
+        int cardWidth = 28;
+
+        // Now print a new line with the card indices centered below each card.
+        for (int cardIndex = 0; cardIndex < cardLinesList.size(); cardIndex++) {
+            // Using 1-indexed display (change to cardIndex if you prefer 0-indexed)
+            String indexStr = String.valueOf(cardIndex + 1);
+            // Calculate left and right padding to center the index within cardWidth.
+            int leftPadding = (cardWidth - indexStr.length()) / 2;
+            int rightPadding = cardWidth - indexStr.length() - leftPadding;
+
+            // Print the index line for this card.
+            System.out.print(" ".repeat(leftPadding) + indexStr + " ".repeat(rightPadding));
+
+            // Print a space between cards if it's not the last card.
+            if (cardIndex < cardLinesList.size() - 1) {
+                System.out.print(" ");
+            }
+        }
+        System.out.println(); // End the index line.
     }
     abstract public void play(Card previous, deck  Deck);
     public boolean Game_Over(){

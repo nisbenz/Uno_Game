@@ -16,7 +16,7 @@ public class deck {
         for (int i = 0; i < 108; i++) {
             Card gen = null;
             if (cpt < 40) {
-                generate_special_Card();
+                gen = generate_special_Card();
                 cpt++;
             } else {
                 gen = new Normal_Card();
@@ -41,24 +41,33 @@ public class deck {
             Discard.push(card);
         }
     }
-    void generate_special_Card(){
+    Card generate_special_Card(){
         Random rand = new Random();
         int x=rand.nextInt(5);
-        Special_Card card = switch (x) {
-            case 0 -> new draw2();
-            case 1 -> new draw4();
-            case 2 -> new reverse();
-            case 3 -> new skip();
-            case 4 -> new wild();
-            default -> null;
+        Card card;
+        switch (x) {
+            case 0 : card =new draw2();
+            break;
+            case 1 : card =new draw4();
+            card.setColor(Card.Color.black);
+            break;
+            case 2 : card = new reverse();
+            break;
+            case 3 : card = new skip();
+            break;
+            case 4 : card = new wild();
+            card.setColor(Card.Color.black);
+            break;
+            default : card = new Normal_Card();
         };
-        card.Displaycard();
-            Draw.push(card);
+             return card;
 
     }
     public void Drawing(Player player) {
         if (!Draw.empty()) {
-            player.getHand().add(Draw.pop());
+            Card card = Draw.pop();
+            player.getHand().add(card);
+
         } else {
             restart();
         }

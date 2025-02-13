@@ -18,36 +18,43 @@ public class Normal_Card extends Card {
         x = rand.nextInt(10);
         setNum(x);
     }
-    String Displaycard(){
+    public String toString() {
+        final int cardWidth = 28;
+        // The inside width is everything between the two '|' characters.
+        final int insideWidth = cardWidth - 2; // 26
+
         StringBuilder sb = new StringBuilder();
 
-        // Define the card's width (adjust as needed)
-        final int cardWidth = 28;
-
-        // Create a horizontal border line based on card width
-        String horizontalBorder = "+" + "-".repeat(cardWidth - 2) + "+\n";
-
-        // Build the card string
+        // 1) Horizontal border: + followed by 26 '-' then + = 28 chars total
+        String horizontalBorder = "+" + "-".repeat(insideWidth) + "+\n";
         sb.append(horizontalBorder);
 
-        // Center the title "NORMAL CARD" in the card
+        // 2) Centered Title: "NORMAL CARD"
         String title = "NORMAL CARD";
-        int padding = (cardWidth - 2 - title.length()) / 2;
-        String titleLine = "|" + " ".repeat(padding) + title + " ".repeat(cardWidth - 2 - title.length() - padding) + "|\n";
-        sb.append(titleLine);
+        // Calculate how many spaces go to the left and right
+        int leftPadding = (insideWidth - title.length()) / 2;
+        int rightPadding = insideWidth - title.length() - leftPadding;
+
+        sb.append("|")
+                .append(" ".repeat(leftPadding))
+                .append(title)
+                .append(" ".repeat(rightPadding))
+                .append("|\n");
+
+        // Another horizontal border
         sb.append(horizontalBorder);
 
-        // Display the card's color
+        // 3) Color line: exactly 28 chars wide
+        //    "|Color: <...>.............|"
+        //    We remove the extra space after '|', so we use "|%-26s|\n"
         String colorStr = "Color: " + getColor();
-        // Left align within a fixed width
-        String colorLine = String.format("| %-"+(cardWidth - 2)+"s|\n", colorStr);
-        sb.append(colorLine);
+        sb.append(String.format("|%-" + insideWidth + "s|\n", colorStr));
 
-        // Display the card's number
+        // 4) Number line
         String numberStr = "Number: " + getNum();
-        String numberLine = String.format("| %-"+(cardWidth - 2)+"s|\n", numberStr);
-        sb.append(numberLine);
+        sb.append(String.format("|%-" + insideWidth + "s|\n", numberStr));
 
+        // Final horizontal border
         sb.append(horizontalBorder);
 
         return sb.toString();

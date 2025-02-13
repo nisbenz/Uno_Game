@@ -34,7 +34,7 @@ public abstract class Card {
                 break;
         }
     }
-    abstract String Displaycard();
+
     abstract boolean Isitplayable(Card previous);
 
 }

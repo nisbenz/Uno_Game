@@ -4,9 +4,11 @@ import java.util.Scanner;
 public class Special_Card extends Card {
 
     private boolean effect = true;
+
     public Special_Card() {
         super();
     }
+
     public void setEffect(boolean effect) {
         this.effect = effect;
     }
@@ -16,46 +18,41 @@ public class Special_Card extends Card {
     }
 
 
-    public String Displaycard() {
+    public String toString() {
+        final int cardWidth = 28;
+        final int insideWidth = cardWidth - 2; // 26
         StringBuilder sb = new StringBuilder();
 
-        // Define a fixed card width (you can adjust this as needed)
-        final int cardWidth = 28;
-
-        // Create a horizontal border based on the card width
-        String horizontalBorder = "+" + "-".repeat(cardWidth - 2) + "+\n";
-
-        // Append the top border
+        // 1) Horizontal border: 28 characters
+        String horizontalBorder = "+" + "-".repeat(insideWidth) + "+\n";
         sb.append(horizontalBorder);
 
-        // Create and append a centered title "SPECIAL CARD"
+        // 2) Centered Title: "SPECIAL CARD"
         String title = "SPECIAL CARD";
-        int padding = (cardWidth - 2 - title.length()) / 2;
-        String titleLine = "|"
-                + " ".repeat(padding)
-                + title
-                + " ".repeat(cardWidth - 2 - title.length() - padding)
-                + "|\n";
-        sb.append(titleLine);
+        int leftPadding = (insideWidth - title.length()) / 2;
+        int rightPadding = insideWidth - title.length() - leftPadding;
+        sb.append("|")
+                .append(" ".repeat(leftPadding))
+                .append(title)
+                .append(" ".repeat(rightPadding))
+                .append("|\n");
 
-        // Append a divider border
         sb.append(horizontalBorder);
 
-        // Append the card's type (displayed in uppercase for clarity)
+        // 3) Type line (26 chars inside, no extra space after `|`)
         String typeStr = "Type: " + this.getClass().getSimpleName().toUpperCase();
-        String typeLine = String.format("| %-"+(cardWidth - 2)+"s|\n", typeStr);
-        sb.append(typeLine);
+        sb.append(String.format("|%-" + insideWidth + "s|\n", typeStr));
 
-        // Append the card's color
+        // 4) Color line (26 chars inside, no extra space after `|`)
         String colorStr = "Color: " + getColor();
-        String colorLine = String.format("| %-"+(cardWidth - 2)+"s|\n", colorStr);
-        sb.append(colorLine);
+        sb.append(String.format("|%-" + insideWidth + "s|\n", colorStr));
 
-        // Append the bottom border
+        // 5) Bottom border
         sb.append(horizontalBorder);
 
         return sb.toString();
     }
+
     protected void Choose_A_color() {
         boolean chosen = false;
         while (!chosen) {
@@ -83,15 +80,24 @@ public class Special_Card extends Card {
             }
         }
     }
+
     boolean Isitplayable(Card previous) {
         if (previous instanceof Special_Card special) {
-            if (!special.getEffect()) {
-                return special.getColor() == getColor() || special.getClass()==this.getClass();
-            }else{
+            if(!special.getEffect()) {
+                return special.getColor() == this.getColor()||special.getClass()==this.getClass();
+                }else{
                 return false;
             }
         }else{
-            return previous.getColor() == getColor();
+            if(this.getEffect()) {
+                switch(this.getClass().getSimpleName()){
+                    case "draw4", "draw2","wild":
+                        return true;
+                    case "skip","reverse":
+                        return this.getColor()==previous.getColor();
+                }
+            }
+            return previous.getColor() == this.getColor();
         }
     }
 }
