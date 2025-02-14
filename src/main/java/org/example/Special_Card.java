@@ -1,4 +1,5 @@
 package org.example;
+import java.util.Objects;
 import java.util.Scanner;
 
 public class Special_Card extends Card {
@@ -82,9 +83,14 @@ public class Special_Card extends Card {
     }
 
     boolean Isitplayable(Card previous) {
+        System.out.println(this.getClass().getSimpleName());
         if (previous instanceof Special_Card special) {
             if(!special.getEffect()) {
-                return special.getColor() == this.getColor()||special.getClass()==this.getClass();
+                if(Objects.equals(special.getClass().getSimpleName(), "wild")||Objects.equals(special.getClass().getSimpleName(), "draw4") ){
+                    return true;
+                }else{
+                    return special.getColor() == this.getColor()|| special.getClass().getSimpleName().equals(this.getClass().getSimpleName());
+                }
                 }else{
                 return false;
             }

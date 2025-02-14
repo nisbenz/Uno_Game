@@ -43,15 +43,13 @@ public class Game {
                             ((wild) previous).Effect();
                             break;
                         case "skip":
-                            ((skip) previous).Effect(currentindex,reverse,players.size());
+                            currentindex=((skip) previous).Effect(currentindex,reverse,players.size()-1);
                             break;
                         case "reverse":
-                            ((reverse) previous).Effect(reverse);
+                            direction=((reverse) previous).Effect(direction);
                             break;
                     }
-                    if (reverse) {
-                        reverseDirection();
-                    }
+
                 players.get(currentindex).play(previous, getDeck());
                 // Move to the next player using the current direction.
                     currentindex = (currentindex + direction + players.size()) % players.size();
@@ -65,7 +63,4 @@ public class Game {
         deck getDeck(){
             return Deck;
         }
-    private void reverseDirection() {
-        direction *= -1;
-    }
 }
