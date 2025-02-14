@@ -14,7 +14,7 @@ public class deck {
         Discard = new Stack<>();
         int cpt = 0;
         for (int i = 0; i < 108; i++) {
-            Card gen = null;
+            Card gen;
             if (cpt < 40) {
                 gen = generate_special_Card();
                 cpt++;
@@ -59,9 +59,8 @@ public class deck {
             card.setColor(Card.Color.black);
             break;
             default : card = new Normal_Card();
-        };
+        }
              return card;
-
     }
     public void Drawing(Player player) {
         if (!Draw.empty()) {

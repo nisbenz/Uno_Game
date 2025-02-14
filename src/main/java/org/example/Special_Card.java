@@ -56,7 +56,7 @@ public class Special_Card extends Card {
     protected void Choose_A_color() {
         boolean chosen = false;
         while (!chosen) {
-            System.out.println("pick from these 4 colors : red,blue,green,yellow (from index 1 to 4)");
+            System.out.println("pick from these 4 colors : red, blue, green, yellow (from index 1 to 4) :");
             Scanner sc = new Scanner(System.in);
             int n = sc.nextInt();
             if (n < 1 || n > 4) {

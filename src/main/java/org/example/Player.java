@@ -33,7 +33,7 @@ public abstract class Player {
         }
 
         // All cards are assumed to have the same number of lines.
-        int numLines = cardLinesList.get(0).length;
+        int numLines = cardLinesList.getFirst().length;
 
         // Print each line of all cards side by side.
         for (int lineIndex = 0; lineIndex < numLines; lineIndex++) {
@@ -70,11 +70,7 @@ public abstract class Player {
     }
     abstract public void play(Card previous, deck  Deck);
     public boolean Game_Over(){
-        if(hand.isEmpty()){
-            return true;
-        }else{
-            return false;
-        }
+        return hand.isEmpty();
     }
 
 

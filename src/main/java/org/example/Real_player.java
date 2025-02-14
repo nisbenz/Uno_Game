@@ -1,6 +1,4 @@
 package org.example;
-
-import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Real_player extends Player {
@@ -17,7 +15,7 @@ public class Real_player extends Player {
                 return;
         }
         boolean heplayed = false;
-        System.out.println("------------Player number " + getId() + " turn");
+        System.out.println("------------Player number " + getId() + " turn-------------");
         System.out.println("here's the previous card");
         System.out.println(previous);
         System.out.println("here's your hand");
