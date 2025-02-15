@@ -2,11 +2,11 @@ package org.example.Special;
 import org.example.Special_Card;
 
 public class reverse extends Special_Card {
-   public int Effect(int direction) {
-       direction *=-1;
+   public boolean Effect(boolean reverse) {
+       boolean R=!reverse;
 
        setEffect(false);
-       return direction;
+       return R;
     }
 
 

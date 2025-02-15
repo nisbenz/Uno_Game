@@ -10,7 +10,7 @@ public class draw4 extends Special_Card {
             for (int i = 0; i < 4; i++) {
                 Deck.Drawing(player);
             }
-            System.out.println("this player drew these cards");
+            System.out.println("player number  "+player.getId()+" drew these cards");
             int n =player.getHand().size();
             System.out.println(player.getHand().get(n-1));
             System.out.println(player.getHand().get(n-2));

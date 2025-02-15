@@ -83,13 +83,12 @@ public class Special_Card extends Card {
     }
 
     boolean Isitplayable(Card previous) {
-        System.out.println(this.getClass().getSimpleName());
         if (previous instanceof Special_Card special) {
             if(!special.getEffect()) {
-                if(Objects.equals(special.getClass().getSimpleName(), "wild")||Objects.equals(special.getClass().getSimpleName(), "draw4") ){
+                if(Objects.equals(this.getClass().getSimpleName(), "wild")||Objects.equals(this.getClass().getSimpleName(), "draw4") ){
                     return true;
                 }else{
-                    return special.getColor() == this.getColor()|| special.getClass().getSimpleName().equals(this.getClass().getSimpleName());
+                    return special.getColor() == this.getColor()|| Objects.equals(this.getClass().getSimpleName(), special.getClass().getSimpleName());
                 }
                 }else{
                 return false;
@@ -97,9 +96,9 @@ public class Special_Card extends Card {
         }else{
             if(this.getEffect()) {
                 switch(this.getClass().getSimpleName()){
-                    case "draw4", "draw2","wild":
+                    case "draw4","wild":
                         return true;
-                    case "skip","reverse":
+                    case "skip","reverse","draw2":
                         return this.getColor()==previous.getColor();
                 }
             }

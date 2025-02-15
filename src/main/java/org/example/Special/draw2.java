@@ -11,8 +11,8 @@ public class draw2 extends Special_Card {
                 Deck.Drawing(player);
 
             }
-            System.out.println("this player drew these cards");
-                int n =player.getHand().size();
+            System.out.println("player number  "+player.getId()+" drew these cards");
+            int n =player.getHand().size();
                 System.out.println(player.getHand().get(n-1));
                 System.out.println(player.getHand().get(n-2));
             setEffect(false);
