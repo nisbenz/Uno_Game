@@ -11,12 +11,8 @@ public abstract class Player {
     public int getId() {
         return id;
     }
-    public void setId(int id) {}
     public ArrayList<Card> getHand() {
         return hand;
-    }
-    public void setHand(ArrayList<Card> hand) {
-        this.hand = hand;
     }
     public void displayHand() {
         if (hand.isEmpty()) {

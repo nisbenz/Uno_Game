@@ -19,9 +19,7 @@ public class Game {
                 for (int i = 0; i < 7; i++) {
                     getDeck().Drawing(player);
                 }
-
             }
-
         }
         void Start() {
             boolean Game_Over = false;
@@ -50,9 +48,10 @@ public class Game {
                     skip card = new skip();
                     currentindex = card.Effect(currentindex, reverse, players.size() - 1);
                 }
-
-                players.get(currentindex).play(previous, getDeck());
-
+                System.out.println("------------Player number " + players.get(currentindex).getId() + " turn-------------");
+                System.out.println("here's the previous card");
+                System.out.println(previous);
+                players.get(currentindex).play(previous,getDeck());
 // Check if the *current* player ended the game
                 if (players.get(currentindex).Game_Over()) {
                     Game_Over = true;
@@ -68,7 +67,6 @@ public class Game {
                 previous = getDeck().getTopCard();
             }
         }
-
         deck getDeck(){
             return Deck;
         }

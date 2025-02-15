@@ -61,7 +61,7 @@ public class Normal_Card extends Card {
     }
     boolean Isitplayable(Card previous){
         if(previous instanceof Normal_Card){
-            return ((Normal_Card) previous).getNum() == this.getNum() || ((Normal_Card) previous).getColor() == this.getColor();
+            return ((Normal_Card) previous).getNum() == this.getNum() ||previous.getColor() == this.getColor();
         }else{
             if(previous instanceof  Special_Card){
                 if(((Special_Card) previous).getEffect()){
