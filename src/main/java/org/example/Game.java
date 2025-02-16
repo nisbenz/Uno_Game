@@ -23,23 +23,29 @@ public class Game {
         }
         void Start() {
             boolean Game_Over = false;
-            boolean reverse = false;
             int direction =1;
             Card previous = new Normal_Card();
             int currentindex = 0;
             while (!Game_Over) {
+                System.out.println("------------Player number " + players.get(currentindex).getId() + " turn-------------");
+                System.out.println("here's the previous card");
+                System.out.println(previous);
+                players.get(currentindex).play(previous,getDeck());
+                previous = getDeck().getTopCard();
+                int next=(currentindex + players.size() +direction) % players.size();
+
                 switch (previous.getClass().getSimpleName()) {
                     case "draw4":
-                        ((draw4) previous).Effect(players.get(currentindex), getDeck());
+                        ((draw4) previous).Effect(players.get(next), getDeck());
                         break;
                     case "draw2":
-                        ((draw2) previous).Effect(players.get(currentindex), getDeck());
+                        ((draw2) previous).Effect(players.get(next), getDeck());
                         break;
                     case "wild":
                         ((wild) previous).Effect();
                         break;
                     case "skip":
-                        currentindex = ((skip) previous).Effect(currentindex, reverse, players.size() - 1);
+                        currentindex = ((skip) previous).Effect(currentindex, direction, players.size());
                         break;
                     case "reverse":
                         direction = ((reverse) previous).Effect(direction);
@@ -47,21 +53,16 @@ public class Game {
                 }
                 if (previous.getClass().getSimpleName().equals("draw2") || previous.getClass().getSimpleName().equals("draw4")) {
                     skip card = new skip();
-                    currentindex = card.Effect(currentindex, reverse, players.size() - 1);
+                    currentindex = card.Effect(currentindex, direction, players.size());
                 }
-                System.out.println("------------Player number " + players.get(currentindex).getId() + " turn-------------");
-                System.out.println("here's the previous card");
-                System.out.println(previous);
-                players.get(currentindex).play(previous,getDeck());
+                currentindex = (currentindex + players.size() +direction) % players.size();
 // Check if the *current* player ended the game
                 if (players.get(currentindex).Game_Over()) {
                     Game_Over = true;
                     // Possibly break out of the loop here, or return, etc.
                 }
 // Now move to the next player
-                    currentindex = (currentindex + players.size() +direction) % players.size();
 // Update 'previous' after the current player’s turn
-                previous = getDeck().getTopCard();
             }
         }
         deck getDeck(){
