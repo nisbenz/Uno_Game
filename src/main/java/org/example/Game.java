@@ -24,6 +24,7 @@ public class Game {
         void Start() {
             boolean Game_Over = false;
             boolean reverse = false;
+            int direction =1;
             Card previous = new Normal_Card();
             int currentindex = 0;
             while (!Game_Over) {
@@ -41,7 +42,7 @@ public class Game {
                         currentindex = ((skip) previous).Effect(currentindex, reverse, players.size() - 1);
                         break;
                     case "reverse":
-                        reverse = ((reverse) previous).Effect(reverse);
+                        direction = ((reverse) previous).Effect(direction);
                         break;
                 }
                 if (previous.getClass().getSimpleName().equals("draw2") || previous.getClass().getSimpleName().equals("draw4")) {
@@ -58,11 +59,7 @@ public class Game {
                     // Possibly break out of the loop here, or return, etc.
                 }
 // Now move to the next player
-                if (reverse) {
-                    currentindex = (currentindex + players.size() - 1) % players.size();
-                } else {
-                    currentindex = (currentindex + 1) % players.size();
-                }
+                    currentindex = (currentindex + players.size() +direction) % players.size();
 // Update 'previous' after the current player’s turn
                 previous = getDeck().getTopCard();
             }
