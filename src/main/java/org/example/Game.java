@@ -5,12 +5,17 @@ import org.example.Special.*;
 public class Game {
     private ArrayList<Player> players = new ArrayList<>();
     private deck Deck = new deck();
-        Game(int nbrOfRealPlayers) {
+        Game(int nbrOfRealPlayers,int nbrOfBotPlayers) {
             Player player;
             for (int i = 0; i < nbrOfRealPlayers; i++) {
                 player =new Real_player(i+1);
                 players.add(player);
             }
+            for (int i = 0; i < nbrOfBotPlayers; i++) {
+                player =new Bot_player(i+1+nbrOfRealPlayers);
+                players.add(player);
+            }
+
             Serve_players();
 
         }
@@ -41,7 +46,7 @@ public class Game {
                         ((draw2) previous).Effect(players.get(next), getDeck());
                         break;
                     case "wild":
-                        ((wild) previous).Effect();
+                        ((wild) previous).Effect(players.get(currentindex));
                         break;
                     case "skip":
                         currentindex = ((skip) previous).Effect(currentindex, direction, players.size());

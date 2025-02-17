@@ -13,7 +13,7 @@ public class Main {
             int n = sc.nextInt();
             System.out.println("Select the number of bots :");
             int m = sc.nextInt();
-            Game uno=new Game(n);
+            Game uno=new Game(n,m);
             uno.Start();
             System.out.println("do you want to restart? (Y/N)");
             restart=sc.next().charAt(0);

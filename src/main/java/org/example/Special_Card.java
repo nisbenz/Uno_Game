@@ -1,5 +1,6 @@
 package org.example;
 import java.util.Objects;
+import java.util.Random;
 import java.util.Scanner;
 
 public class Special_Card extends Card {
@@ -54,12 +55,18 @@ public class Special_Card extends Card {
         return sb.toString();
     }
 
-    protected void Choose_A_color() {
+    protected void Choose_A_color(Player player) {
         boolean chosen = false;
+        int n;
         while (!chosen) {
-            System.out.println("pick from these 4 colors : red, blue, green, yellow (from index 1 to 4) :");
-            Scanner sc = new Scanner(System.in);
-            int n = sc.nextInt();
+            if(player instanceof Real_player) {
+                System.out.println("pick from these 4 colors : red, blue, green, yellow (from index 1 to 4) :");
+                Scanner sc = new Scanner(System.in);
+                 n = sc.nextInt();
+            }else{
+                Random rand = new Random();
+                n=rand.nextInt(4);
+            }
             if (n < 1 || n > 4) {
                 System.out.println("Please enter a valid index");
             } else {
