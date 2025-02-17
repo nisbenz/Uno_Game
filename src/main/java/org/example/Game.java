@@ -33,7 +33,6 @@ public class Game {
                 players.get(currentindex).play(previous,getDeck());
                 previous = getDeck().getTopCard();
                 int next=(currentindex + players.size() +direction) % players.size();
-
                 switch (previous.getClass().getSimpleName()) {
                     case "draw4":
                         ((draw4) previous).Effect(players.get(next), getDeck());
@@ -56,13 +55,9 @@ public class Game {
                     currentindex = card.Effect(currentindex, direction, players.size());
                 }
                 currentindex = (currentindex + players.size() +direction) % players.size();
-// Check if the *current* player ended the game
                 if (players.get(currentindex).Game_Over()) {
                     Game_Over = true;
-                    // Possibly break out of the loop here, or return, etc.
                 }
-// Now move to the next player
-// Update 'previous' after the current player’s turn
             }
         }
         deck getDeck(){

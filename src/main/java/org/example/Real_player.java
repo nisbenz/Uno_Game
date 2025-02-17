@@ -1,11 +1,11 @@
 package org.example;
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class Real_player extends Player {
     Real_player(int id) {
         super(id);
     }
-
     public void play(Card previous, deck Deck) {
         if(!Canplay(previous)){
                 System.out.println("Player number " + getId() + " has to draw a card from the deck");
@@ -18,9 +18,19 @@ public class Real_player extends Player {
         System.out.println("here's your hand");
         displayHand();
         while (!heplayed) {
-            System.out.println("Pick a card from index 1 to " + getHand().size());
-            Scanner sc = new Scanner(System.in);
-            int choice = sc.nextInt();
+            
+            boolean validInput = false;
+            int choice=0 ;
+            while (!validInput) {
+                System.out.println("Pick a card from index 1 to " + getHand().size());
+                Scanner sc = new Scanner(System.in);
+                try {
+                    choice = sc.nextInt();
+                    validInput = true;  // Input was valid, exit the loop
+                } catch (InputMismatchException e) {
+                    System.out.println("Invalid input! Please enter a valid integer.");
+                }
+            }
             System.out.println(getHand().get(choice - 1).Isitplayable(previous));
             if (choice < 1 || choice > getHand().size()) {
                 System.out.println("Invalid input");
