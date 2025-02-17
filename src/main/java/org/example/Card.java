@@ -34,7 +34,6 @@ public abstract class Card {
                 break;
         }
     }
-
     abstract boolean Isitplayable(Card previous);
 
 }

@@ -3,8 +3,8 @@ import java.util.ArrayList;
 import org.example.Special.*;
 
 public class Game {
-    private ArrayList<Player> players = new ArrayList<>();
-    private deck Deck = new deck();
+    private final ArrayList<Player> players = new ArrayList<>();
+    private final deck Deck = new deck();
         Game(int nbrOfRealPlayers,int nbrOfBotPlayers) {
             Player player;
             for (int i = 0; i < nbrOfRealPlayers; i++) {
