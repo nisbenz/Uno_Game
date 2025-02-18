@@ -22,7 +22,7 @@ public class Game {
         void  Serve_players(){
             for (Player player : players) {
                 for (int i = 0; i < 7; i++) {
-                    getDeck().Drawing(player);
+                    Deck.Drawing(player);
                 }
             }
         }
@@ -35,15 +35,17 @@ public class Game {
                 System.out.println("------------Player number " + players.get(currentindex).getId() + " turn-------------");
                 System.out.println("here's the previous card");
                 System.out.println(previous);
-                players.get(currentindex).play(previous,getDeck());
-                previous = getDeck().getTopCard();
+                players.get(currentindex).play(previous,Deck);
+               Space();
+                System.out.println("\t");
+                previous = Deck.getTopCard();
                 int next=(currentindex + players.size() +direction) % players.size();
                 switch (previous.getClass().getSimpleName()) {
                     case "draw4":
-                        ((draw4) previous).Effect(players.get(next), getDeck());
+                        ((draw4) previous).Effect(players.get(next), Deck);
                         break;
                     case "draw2":
-                        ((draw2) previous).Effect(players.get(next), getDeck());
+                        ((draw2) previous).Effect(players.get(next), Deck);
                         break;
                     case "wild":
                         ((wild) previous).Effect(players.get(currentindex));
@@ -65,7 +67,11 @@ public class Game {
                 }
             }
         }
-        deck getDeck(){
-            return Deck;
+
+        void Space(){
+            for (int i = 0; i < 7; i++) {
+                System.out.println("\t");
+            }
+
         }
 }
