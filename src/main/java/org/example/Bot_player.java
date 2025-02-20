@@ -20,7 +20,7 @@ public class Bot_player extends Player{
         displayHand();
         System.out.println("the bot has chosen this card");
         System.out.println(Usablecard.get(n));
-        Deck.Discarding(this,n);
+        Deck.Discarding(this,Usablecard.get(n));
     }
     public ArrayList<Card> Canplay(Card previous) {
         ArrayList<Card> Usablecard  = new ArrayList<>();

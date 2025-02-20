@@ -3,8 +3,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public abstract class Player {
-    private int id;
-    private ArrayList<Card> hand = new ArrayList<>();
+    private final int id;
+    private final ArrayList<Card> hand = new ArrayList<>();
     public Player(int  id) {
         this.id = id;
     }

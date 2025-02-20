@@ -37,7 +37,7 @@ public class Real_player extends Player {
             } else if (getHand().get(choice - 1).Isitplayable(previous)) {
                 System.out.println("Player number " + getId() + " has played this card");
                 System.out.println(getHand().get(choice - 1));
-                Deck.Discarding(this, choice - 1);
+                Deck.Discarding(this, getHand().get(choice - 1));
                 heplayed = true;
             } else {
                 System.out.println("Invalid choice");

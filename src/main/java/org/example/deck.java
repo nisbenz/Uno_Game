@@ -71,10 +71,10 @@ public class deck {
             restart();
         }
     }
-    public void Discarding(Player player, int index) {
-        Card card = player.getHand().get(index);
+    public void Discarding(Player player, Card card) {
+
         Discard.push(card);
-        player.getHand().remove(index);
+        player.getHand().remove(card);
     }
     public Card getFirstCard() {
         Card card = Draw.pop();
