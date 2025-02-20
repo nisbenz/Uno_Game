@@ -37,7 +37,6 @@ public class Game {
                 System.out.println(previous);
                 players.get(currentindex).play(previous,Deck);
                Space();
-                System.out.println("\t");
                 previous = Deck.getTopCard();
                 int next=(currentindex + players.size() +direction) % players.size();
                 switch (previous.getClass().getSimpleName()) {
@@ -67,7 +66,6 @@ public class Game {
                 }
             }
         }
-
         void Space(){
             for (int i = 0; i < 7; i++) {
                 System.out.println("\t");
