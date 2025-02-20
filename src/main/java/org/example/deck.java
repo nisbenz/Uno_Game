@@ -35,6 +35,9 @@ public class deck {
             Card card = null;
             while (!Discard.empty()) {
                 card = Discard.pop();
+                if (card instanceof Special_Card){
+                    ((Special_Card) card).setEffect(true);
+                }
                 Draw.push(Discard.pop());
             }
             Collections.shuffle(Draw);
@@ -75,11 +78,6 @@ public class deck {
 
         Discard.push(card);
         player.getHand().remove(card);
-    }
-    public Card getFirstCard() {
-        Card card = Draw.pop();
-        Discard.push(card);
-        return card;
     }
     public Card getTopCard() {
         return Discard.peek();

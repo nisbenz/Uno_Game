@@ -60,10 +60,11 @@ public class Game {
                     skip card = new skip();
                     currentindex = card.Effect(currentindex, direction, players.size());
                 }
-                currentindex = (currentindex + players.size() +direction) % players.size();
                 if (players.get(currentindex).Game_Over()) {
                     Game_Over = true;
                 }
+                currentindex = (currentindex + players.size() +direction) % players.size();
+
             }
         }
         void Space(){
