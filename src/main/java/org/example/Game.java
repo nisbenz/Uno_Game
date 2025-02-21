@@ -1,11 +1,12 @@
 package org.example;
+import java.awt.*;
 import java.util.ArrayList;
 import org.example.Special.*;
 
 public class Game {
     private final ArrayList<Player> players = new ArrayList<>();
     private final deck Deck = new deck();
-        Game(int nbrOfRealPlayers,int nbrOfBotPlayers) {
+        public Game(int nbrOfRealPlayers, int nbrOfBotPlayers) {
             Player player;
             for (int i = 0; i < nbrOfRealPlayers; i++) {
                 player =new Real_player(i+1);
@@ -33,6 +34,7 @@ public class Game {
             int currentindex = 0;
             while (!Game_Over) {
                 System.out.println("------------Player number " + players.get(currentindex).getId() + " turn-------------");
+
                 System.out.println("here's the previous card");
                 System.out.println(previous);
                 players.get(currentindex).play(previous,Deck);
