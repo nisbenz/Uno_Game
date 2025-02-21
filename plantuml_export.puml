@@ -1,0 +1,120 @@
+@startuml
+'-----------------------
+' Card hierarchy
+'-----------------------
+
+abstract class Card {
+    - color : Color
+    + getColor() : Color
+    + setColor(color : Color) : void
+    + generate_color() : void
+    + Isitplayable(previous : Card) : boolean
+}
+
+class Normal_Card extends Card {
+    - num : int
+    + getNum() : int
+    + setNum(num : int) : void
+    + generatevalue() : void
+    + toString() : String
+    + Isitplayable(previous : Card) : boolean
+}
+
+abstract class Special_Card extends Card {
+    - effect : boolean
+    + setEffect(effect : boolean) : void
+    + getEffect() : boolean
+    + Choose_A_color(player : Player) : void
+    + Isitplayable(previous : Card) : boolean
+    + toString() : String
+}
+
+class draw2 extends Special_Card {
+    + Effect(player : Player, deck : deck) : void
+}
+
+class draw4 extends Special_Card {
+    + Effect(player : Player, deck : deck) : void
+}
+
+class skip extends Special_Card {
+    + Effect(currentIndex : int, direction : int, playersize : int) : int
+}
+
+class wild extends Special_Card {
+    + Effect(player : Player) : void
+}
+
+class reverse extends Special_Card {
+    + Effect(direction : int) : int
+}
+
+' Inheritance arrows for special cards
+Card <|-- Normal_Card
+Card <|-- Special_Card
+Special_Card <|-- draw2
+Special_Card <|-- draw4
+Special_Card <|-- skip
+Special_Card <|-- wild
+Special_Card <|-- reverse
+
+'-----------------------
+' Player hierarchy
+'-----------------------
+
+abstract class Player {
+    - id : int
+    - hand : ArrayList<Card>
+    + getId() : int
+    + getHand() : ArrayList<Card>
+    + displayHand() : void
+    + play(previous : Card, deck : deck) : void
+    + Game_Over() : boolean
+}
+
+class Real_player extends Player {
+    + play(previous : Card, deck : deck) : void
+    + Canplay(previous : Card) : boolean
+}
+
+class Bot_player extends Player {
+    + play(previous : Card, deck : deck) : void
+    + Canplay(previous : Card) : ArrayList<Card>
+}
+
+Player <|-- Real_player
+Player <|-- Bot_player
+
+'-----------------------
+' Other Classes
+'-----------------------
+
+class deck {
+    - Draw : Stack<Card>
+    - Discard : Stack<Card>
+    + initdeck() : void
+    + restart() : void
+    + Drawing(player : Player) : void
+    + Discarding(player : Player, card : Card) : void
+    + getTopCard() : Card
+    + generate_special_Card() : Card
+}
+
+class Game {
+    - players : ArrayList<Player>
+    - Deck : deck
+    + Game(nbrOfRealPlayers : int, nbrOfBotPlayers : int)
+    + Serve_players() : void
+    + Start() : void
+    + Space() : void
+}
+
+class Main {
+    + main(args : String[]) : void
+}
+
+Game --> deck
+Game --> Player
+deck --> Card
+
+@enduml
