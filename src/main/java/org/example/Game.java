@@ -1,5 +1,4 @@
 package org.example;
-import java.awt.*;
 import java.util.ArrayList;
 import org.example.Special.*;
 
@@ -39,11 +38,11 @@ public class Game {
                 System.out.println(previous);
                 players.get(currentindex).play(previous,Deck);
                Space();
-                previous = Deck.getTopCard();
-                int next=(currentindex + players.size() +direction) % players.size();
+                previous =Deck.getTopCard();
+                int next=(currentindex + players.size()+direction) % players.size();
                 switch (previous.getClass().getSimpleName()) {
                     case "draw4":
-                        ((draw4) previous).Effect(players.get(next), Deck);
+                        ((draw4) previous).Effect(players.get(next),Deck);
                         break;
                     case "draw2":
                         ((draw2) previous).Effect(players.get(next), Deck);
@@ -52,7 +51,7 @@ public class Game {
                         ((wild) previous).Effect(players.get(currentindex));
                         break;
                     case "skip":
-                        currentindex = ((skip) previous).Effect(currentindex, direction, players.size());
+                        currentindex = ((skip) previous).Effect(currentindex,direction, players.size());
                         break;
                     case "reverse":
                         direction = ((reverse) previous).Effect(direction);
