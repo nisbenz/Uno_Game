@@ -57,14 +57,15 @@ public class Game {
                         direction = ((reverse) previous).Effect(direction);
                         break;
                 }
-                if (previous.getClass().getSimpleName().equals("draw2") || previous.getClass().getSimpleName().equals("draw4")) {
-                    skip card = new skip();
-                    currentindex = card.Effect(currentindex, direction, players.size());
-                }
+
                 if (players.get(currentindex).Game_Over()) {
                     Game_Over = true;
                 }
                 currentindex = (currentindex + players.size() +direction) % players.size();
+                if (previous.getClass().getSimpleName().equals("draw2") || previous.getClass().getSimpleName().equals("draw4")) {
+                    skip card = new skip();
+                    currentindex = card.Effect(currentindex, direction, players.size());
+                }
 
             }
         }
