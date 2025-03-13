@@ -30,6 +30,7 @@ public class Game {
             boolean Game_Over = false;
             int direction =1;
             Card previous = new Normal_Card();
+            skip card = new skip();
             int currentindex = 0;
             while (!Game_Over) {
                 System.out.println("------------Player number " + players.get(currentindex).getId() + " turn-------------");
@@ -63,7 +64,6 @@ public class Game {
                 }
                 currentindex = (currentindex + players.size() +direction) % players.size();
                 if (previous.getClass().getSimpleName().equals("draw2") || previous.getClass().getSimpleName().equals("draw4")) {
-                    skip card = new skip();
                     currentindex = card.Effect(currentindex, direction, players.size());
                 }
 
