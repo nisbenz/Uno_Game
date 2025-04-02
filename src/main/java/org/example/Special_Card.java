@@ -3,7 +3,7 @@ import java.util.Objects;
 import java.util.Random;
 import java.util.Scanner;
 
-public class Special_Card extends Card {
+public  class Special_Card extends Card {
 
     private boolean effect = true;
 

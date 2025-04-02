@@ -11,6 +11,9 @@ public class Main {
                 int n = sc.nextInt();
                 System.out.println("Select the number of bots :");
                 int m = sc.nextInt();
+                if(n<0 || m<0){
+                    throw new Exception();
+                }
                 Game uno = new Game(n, m);
                 uno.Start();
                 System.out.println("do you want to restart? (Y/N)");

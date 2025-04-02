@@ -6,7 +6,7 @@ public class Real_player extends Player {
     Real_player(int id) {
         super(id);
     }
-    public void play(Card previous, deck Deck) {
+public void play(Card previous, deck Deck) {
         if(!Canplay(previous)){
                 System.out.println("Player number " + getId() + " has to draw a card from the deck");
                 Deck.Drawing(this);
@@ -18,7 +18,7 @@ public class Real_player extends Player {
         System.out.println("here's your hand");
         displayHand();
         while (!heplayed) {
-            
+
             boolean validInput = false;
             int choice=0 ;
             while (!validInput) {
@@ -26,16 +26,21 @@ public class Real_player extends Player {
                 Scanner sc = new Scanner(System.in);
                 try {
                     choice = sc.nextInt();
+                    if(choice < 1 || choice > getHand().size()) {
+                        throw new Exception();
+                    }
                     validInput = true;  // Input was valid, exit the loop
                 } catch (InputMismatchException e) {
                     System.out.println("Invalid input! Please enter a valid integer.");
+                }catch (Exception e) {
+                    System.out.println("Invalid input!");
                 }
             }
             System.out.println(getHand().get(choice - 1).Isitplayable(previous));
-            if (choice < 1 || choice > getHand().size()) {
-                System.out.println("Invalid input");
-            } else if (getHand().get(choice - 1).Isitplayable(previous)) {
+            if (getHand().get(choice - 1).Isitplayable(previous)) {
+
                 System.out.println("Player number " + getId() + " has played this card");
+
                 System.out.println(getHand().get(choice - 1));
                 Deck.Discarding(this, getHand().get(choice - 1));
                 heplayed = true;
@@ -44,7 +49,7 @@ public class Real_player extends Player {
             }
         }
     }
-    public boolean Canplay(Card previous) {
+public boolean Canplay(Card previous) {
         for (int i = 0; i < getHand().size(); i++) {
             if (getHand().get(i).Isitplayable(previous)) {
                 return true;

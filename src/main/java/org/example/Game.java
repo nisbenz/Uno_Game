@@ -3,8 +3,9 @@ import java.util.ArrayList;
 import org.example.Special.*;
 
 public class Game {
-    private final ArrayList<Player> players = new ArrayList<>();
-    private final deck Deck = new deck();
+    private  ArrayList<Player> players = new ArrayList<>();
+    private  deck Deck = new deck();
+
         public Game(int nbrOfRealPlayers, int nbrOfBotPlayers) {
             Player player;
             for (int i = 0; i < nbrOfRealPlayers; i++) {
@@ -15,9 +16,7 @@ public class Game {
                 player =new Bot_player(i+1+nbrOfRealPlayers);
                 players.add(player);
             }
-
             Serve_players();
-
         }
         void  Serve_players(){
             for (Player player : players) {
@@ -75,4 +74,17 @@ public class Game {
             }
 
         }
+
+    public deck getDeck() {
+        return Deck;
+    }
+    public void setDeck(deck deck) {
+            Deck = deck;
+    }
+    public ArrayList<Player> getPlayers() {
+            return players;
+    }
+    public void setPlayers(ArrayList<Player> players) {
+            this.players = players;
+    }
 }
