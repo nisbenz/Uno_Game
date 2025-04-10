@@ -25,28 +25,32 @@ abstract class Special_Card extends Card {
     + setEffect(effect : boolean) : void
     + getEffect() : boolean
     + Choose_A_color(player : Player) : void
-    + Isitplayable(previous : Card) : boolean
     + toString() : String
 }
 
 class draw2 extends Special_Card {
     + Effect(player : Player, deck : deck) : void
+    + Isitplayable(previous : Card) : boolean
 }
 
 class draw4 extends Special_Card {
     + Effect(player : Player, deck : deck) : void
+    + Isitplayable(previous : Card) : boolean
 }
 
 class skip extends Special_Card {
     + Effect(currentIndex : int, direction : int, playersize : int) : int
+    + Isitplayable(previous : Card) : boolean
 }
 
 class wild extends Special_Card {
     + Effect(player : Player) : void
+    + Isitplayable(previous : Card) : boolean
 }
 
 class reverse extends Special_Card {
     + Effect(direction : int) : int
+    + Isitplayable(previous : Card) : boolean
 }
 
 
