@@ -36,7 +36,6 @@ public void play(Card previous, deck Deck) {
                     System.out.println("Invalid input!");
                 }
             }
-            System.out.println(getHand().get(choice - 1).Isitplayable(previous));
             if (getHand().get(choice - 1).Isitplayable(previous)) {
 
                 System.out.println("Player number " + getId() + " has played this card");

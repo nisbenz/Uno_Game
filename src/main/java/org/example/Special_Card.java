@@ -3,7 +3,7 @@ import java.util.Objects;
 import java.util.Random;
 import java.util.Scanner;
 
-public  class Special_Card extends Card {
+public abstract class Special_Card extends Card {
 
     private boolean effect = true;
 
@@ -89,27 +89,4 @@ public  class Special_Card extends Card {
         }
     }
 
-    boolean Isitplayable(Card previous) {
-        if (previous instanceof Special_Card special) {
-            if(!special.getEffect()) {
-                if(Objects.equals(this.getClass().getSimpleName(), "wild")||Objects.equals(this.getClass().getSimpleName(), "draw4") ){
-                    return true;
-                }else{
-                    return special.getColor() == this.getColor()|| Objects.equals(this.getClass().getSimpleName(), special.getClass().getSimpleName());
-                }
-                }else{
-                return false;
-            }
-        }else{
-            if(this.getEffect()) {
-                switch(this.getClass().getSimpleName()){
-                    case "draw4","wild":
-                        return true;
-                    case "skip","reverse","draw2":
-                        return this.getColor()==previous.getColor();
-                }
-            }
-            return previous.getColor() == this.getColor();
-        }
-    }
 }

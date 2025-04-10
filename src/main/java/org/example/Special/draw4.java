@@ -20,4 +20,11 @@ public class draw4 extends Special_Card {
             setEffect(false);
         }
     }
+    public boolean Isitplayable(Card previous) {
+        if (previous instanceof Special_Card special) {
+            return !special.getEffect();
+        } else {
+            return true;
+        }
+    }
 }

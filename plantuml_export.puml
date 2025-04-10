@@ -49,14 +49,6 @@ class reverse extends Special_Card {
     + Effect(direction : int) : int
 }
 
-' Inheritance arrows for special cards
-Card <|-- Normal_Card
-Card <|-- Special_Card
-Special_Card <|-- draw2
-Special_Card <|-- draw4
-Special_Card <|-- skip
-Special_Card <|-- wild
-Special_Card <|-- reverse
 
 '-----------------------
 ' Player hierarchy
@@ -82,8 +74,7 @@ class Bot_player extends Player {
     + Canplay(previous : Card) : ArrayList<Card>
 }
 
-Player <|-- Real_player
-Player <|-- Bot_player
+
 
 '-----------------------
 ' Other Classes

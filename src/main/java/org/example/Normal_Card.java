@@ -59,7 +59,7 @@ public class Normal_Card extends Card {
 
         return sb.toString();
     }
-    boolean Isitplayable(Card previous){
+    protected boolean Isitplayable(Card previous){
         if(previous instanceof Normal_Card){
             return ((Normal_Card) previous).getNum() == this.getNum() ||previous.getColor() == this.getColor();
         }else{
