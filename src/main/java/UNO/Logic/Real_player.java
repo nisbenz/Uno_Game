@@ -1,4 +1,5 @@
-package org.example;
+package UNO.Logic;
+
 import java.util.InputMismatchException;
 import java.util.Scanner;
 

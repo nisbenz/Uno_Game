@@ -1,4 +1,4 @@
-package org.example;
+package UNO.Logic;
 
 import java.util.Scanner;
 public class Main {

@@ -1,7 +1,8 @@
-package org.example.Special;
-import org.example.*;
-
-
+package UNO.Logic.Special;
+import UNO.Logic.Card;
+import UNO.Logic.Player;
+import UNO.Logic.Special_Card;
+import UNO.Logic.deck;
 
 public class draw4 extends Special_Card {
     public void Effect(Player player, deck Deck) {

@@ -1,4 +1,5 @@
-package org.example;
+package UNO.Logic;
+
 import java.util.Random;
 
 public class Normal_Card extends Card {
@@ -63,7 +64,7 @@ public class Normal_Card extends Card {
         if(previous instanceof Normal_Card){
             return ((Normal_Card) previous).getNum() == this.getNum() ||previous.getColor() == this.getColor();
         }else{
-            if(previous instanceof  Special_Card){
+            if(previous instanceof Special_Card){
                 if(((Special_Card) previous).getEffect()){
                     return false;
                 }else{

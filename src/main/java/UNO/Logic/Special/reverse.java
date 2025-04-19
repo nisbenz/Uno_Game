@@ -1,6 +1,6 @@
-package org.example.Special;
-import org.example.Card;
-import org.example.Special_Card;
+package UNO.Logic.Special;
+import UNO.Logic.Card;
+import UNO.Logic.Special_Card;
 
 public class reverse extends Special_Card {
    public int Effect(int direction) {

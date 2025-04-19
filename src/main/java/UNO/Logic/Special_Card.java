@@ -1,5 +1,5 @@
-package org.example;
-import java.util.Objects;
+package UNO.Logic;
+
 import java.util.Random;
 import java.util.Scanner;
 

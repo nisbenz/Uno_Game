@@ -1,12 +1,13 @@
-package org.example;
+package UNO.Logic;
+
 import java.util.ArrayList;
 import java.util.Random;
 
-public class Bot_player extends Player{
+public class Bot_player extends Player {
     Bot_player(int id){
         super(id);
     }
-    public void play(Card previous,deck Deck){
+    public void play(Card previous, deck Deck){
         ArrayList <Card> Usablecard=Canplay(previous);
         if(Usablecard.isEmpty()){
             System.out.println("Bot number " + getId() + " has to draw a card from the deck");

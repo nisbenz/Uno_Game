@@ -1,8 +1,8 @@
-package org.example;
-
+package UNO.Logic;
 import java.util.Random;
 
-import static org.example.Card.Color.*;
+import static UNO.Logic.Card.Color.*;
+
 public abstract class Card {
    public enum Color {red, green, blue, yellow,black}
     private Color color;

@@ -1,10 +1,12 @@
-package org.example;
+package UNO.Logic;
 import java.util.ArrayList;
-import org.example.Special.*;
+
+import UNO.Logic.Special.*;
+import UNO.Logic.unoLogic.Special.*;
 
 public class Game {
     private  ArrayList<Player> players = new ArrayList<>();
-    private  deck Deck = new deck();
+    private deck Deck = new deck();
 
         public Game(int nbrOfRealPlayers, int nbrOfBotPlayers) {
             Player player;

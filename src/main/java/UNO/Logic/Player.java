@@ -1,4 +1,5 @@
-package org.example;
+package UNO.Logic;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -64,7 +65,7 @@ public abstract class Player {
         }
         System.out.println(); // End the index line.
     }
-    abstract public void play(Card previous, deck  Deck);
+    abstract public void play(Card previous, deck Deck);
     public boolean Game_Over(){
         return hand.isEmpty();
     }

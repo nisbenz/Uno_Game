@@ -1,7 +1,7 @@
-package org.example.Special;
+package UNO.Logic.Special;
 
-import org.example.Card;
-import org.example.Special_Card;
+import UNO.Logic.Card;
+import UNO.Logic.Special_Card;
 
 public class skip extends Special_Card {
     public  int Effect(int current_index,int direction,int n) {
